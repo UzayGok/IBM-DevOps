@@ -1,8 +1,3 @@
-# Build Status
-
-![Build Status](https://github.com/UzayGok/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)
-
-
 # DevOps Capstone Template
 
 ![Build Status](https://github.com/UzayGok/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)
