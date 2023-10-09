@@ -133,7 +133,7 @@ class TestAccountService(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
         self.assertEqual(data["name"], account.name)
-        
+
     def test_account_not_found(self):
         '''It should be unable to read the account if it does not exist'''
         resp = self.client.get(
@@ -151,12 +151,12 @@ class TestAccountService(TestCase):
 
     def test_update_accounts(self):
         '''It should update an account successfully'''
-        account=self._create_accounts(1)[0]
+        account = self._create_accounts(1)[0]
         resp = self.client.get(
             f"{BASE_URL}/{account.id}", content_type="application/json"
         )
-        new_account=resp.get_json()
-        new_account["name"]="jack"
+        new_account = resp.get_json()
+        new_account["name"] = "jack"
         resp = self.client.put(f"{BASE_URL}/{new_account['id']}", json=new_account)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         resp = self.client.get(
@@ -168,13 +168,13 @@ class TestAccountService(TestCase):
 
     def test_false_update_accounts(self):
         '''It should fail to update a non-existing account'''
-        new_account=AccountFactory()
+        new_account = AccountFactory()
         resp = self.client.put(f"{BASE_URL}/{'0'}", json=new_account.serialize())
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_delete_account(self):
         '''It should also delete properly'''
-        account=self._create_accounts(1)[0]
+        account = self._create_accounts(1)[0]
         resp = self.client.delete(f"{BASE_URL}/{account.id}")
         self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
 
